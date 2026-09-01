@@ -23,8 +23,8 @@ public class PagamentoService {
     }
 
     @Transactional
-    public PagamentoResponseDTO create(PagamentoRequestDTO pagamentoRequestDTO) {
-        Pagamento pagamento = pagamentoMapper.toEntity(pagamentoRequestDTO);
+    public PagamentoResponseDTO create(PagamentoRequestDTO dto) {
+        Pagamento pagamento = pagamentoMapper.toEntity(dto);
         pagamentoRepository.save(pagamento);
         return pagamentoMapper.toDTO(pagamento);
     }

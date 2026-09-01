@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/v1/pagamentos")
@@ -22,10 +25,14 @@ public class PagamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<PagamentoResponseDTO> create(@RequestBody @Valid PagamentoRequestDTO dto) {
+    public ResponseEntity<PagamentoResponseDTO> create(@RequestBody @Valid PagamentoRequestDTO dto, UriComponentsBuilder uriBuilder) {
+
         PagamentoResponseDTO response = pagamentoService.create(dto);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        URI uri = uriBuilder.path("/pagamentos/{id}").buildAndExpand(
+                response.id()).toUri();
+        return ResponseEntity.created(uri)
+                .body(response);
     }
 
     @PatchMapping("/{pagamentoId}")
