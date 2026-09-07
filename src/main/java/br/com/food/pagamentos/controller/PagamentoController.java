@@ -7,7 +7,7 @@ import br.com.food.pagamentos.service.PagamentoService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -48,7 +48,7 @@ public class PagamentoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PagamentoResponseDTO>> findAll(Pageable pageable) {
+    public ResponseEntity<Page<PagamentoResponseDTO>> findAll(@PageableDefault(size = 2) Pageable pageable) {
         return ResponseEntity.ok(pagamentoService.findAllPayment(pageable));
     }
 }
