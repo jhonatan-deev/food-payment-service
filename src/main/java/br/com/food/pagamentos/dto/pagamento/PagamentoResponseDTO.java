@@ -1,6 +1,6 @@
 package br.com.food.pagamentos.dto.pagamento;
 
-import br.com.food.pagamentos.enuns.STATUS;
+import br.com.food.pagamentos.enums.STATUS;
 
 import java.math.BigDecimal;
 

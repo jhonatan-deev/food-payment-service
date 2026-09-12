@@ -1,4 +1,4 @@
-package br.com.food.pagamentos.enuns;
+package br.com.food.pagamentos.enums;
 
 public enum STATUS {
 
@@ -11,7 +11,8 @@ public enum STATUS {
         return switch (this) {
             case PENDENTE ->
                     novoStatus == CONFIRMADO ||
-                            novoStatus == RECUSADO;
+                            novoStatus == RECUSADO ||
+                            novoStatus == CANCELADO;
 
             case CONFIRMADO ->
                     novoStatus == CANCELADO;

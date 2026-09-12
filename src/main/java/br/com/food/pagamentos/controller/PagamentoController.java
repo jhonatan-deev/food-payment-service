@@ -5,6 +5,7 @@ import br.com.food.pagamentos.dto.pagamento.PagamentoResponseDTO;
 import br.com.food.pagamentos.dto.pagamento.PagamentoUpdateStatusDTO;
 import br.com.food.pagamentos.service.PagamentoService;
 import jakarta.validation.Valid;
+import org.springframework.boot.web.server.context.WebServerApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -20,9 +21,12 @@ public class PagamentoController {
 
     private final PagamentoService pagamentoService;
 
-    public PagamentoController(PagamentoService pagamentoService) {
+    public PagamentoController(PagamentoService pagamentoService, WebServerApplicationContext context) {
         this.pagamentoService = pagamentoService;
+        this.context = context;
     }
+
+    private final WebServerApplicationContext context;
 
     @PostMapping
     public ResponseEntity<PagamentoResponseDTO> create(@RequestBody @Valid PagamentoRequestDTO dto, UriComponentsBuilder uriBuilder) {
@@ -48,8 +52,13 @@ public class PagamentoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PagamentoResponseDTO>> findAll(@PageableDefault(size = 2) Pageable pageable) {
+    public ResponseEntity<Page<PagamentoResponseDTO>> findAll(@PageableDefault(size = 10) Pageable pageable) {
         return ResponseEntity.ok(pagamentoService.findAllPayment(pageable));
     }
-}
 
+    @GetMapping("/porta")
+    public String verificarPorta() {
+        return "Requisição atendida pela porta: "
+                + context.getWebServer().getPort();
+    }
+}

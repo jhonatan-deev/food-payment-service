@@ -1,6 +1,6 @@
 package br.com.food.pagamentos.model;
 
-import br.com.food.pagamentos.enuns.STATUS;
+import br.com.food.pagamentos.enums.STATUS;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
