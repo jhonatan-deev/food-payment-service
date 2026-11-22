@@ -2,7 +2,7 @@ package br.com.food.pagamentos.controller;
 
 import br.com.food.pagamentos.dto.pagamento.PagamentoRequestDTO;
 import br.com.food.pagamentos.dto.pagamento.PagamentoResponseDTO;
-import br.com.food.pagamentos.dto.pagamento.PagamentoUpdateStatusDTO;
+
 import br.com.food.pagamentos.service.PagamentoService;
 import jakarta.validation.Valid;
 import org.springframework.boot.web.server.context.WebServerApplicationContext;
@@ -39,12 +39,12 @@ public class PagamentoController {
                 .body(response);
     }
 
-    @PatchMapping("/{pagamentoId}")
-    public ResponseEntity<PagamentoResponseDTO> update(@PathVariable Long pagamentoId, @RequestBody @Valid PagamentoUpdateStatusDTO dto) {
-        PagamentoResponseDTO response = pagamentoService.update(dto, pagamentoId);
-
-        return ResponseEntity.ok(response);
-    }
+//    @PatchMapping("/{pagamentoId}")
+//    public ResponseEntity<PagamentoResponseDTO> update(@PathVariable Long pagamentoId, @RequestBody @Valid PagamentoUpdateStatusDTO dto) {
+//        PagamentoResponseDTO response = pagamentoService.update(dto, pagamentoId);
+//
+//        return ResponseEntity.ok(response);
+//    }
 
     @GetMapping("/{pagamentoId}")
     public ResponseEntity<PagamentoResponseDTO> findById(@PathVariable Long pagamentoId) {

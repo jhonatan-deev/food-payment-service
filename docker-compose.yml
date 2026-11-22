@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: pagamentos_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: pagamentos_db
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5433:5432"
+    volumes:
+      - pagamentos_pgdata:/var/lib/postgresql/data
+
+volumes:
+  pagamentos_pgdata:
